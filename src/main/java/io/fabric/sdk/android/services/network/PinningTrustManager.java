@@ -47,7 +47,7 @@ class PinningTrustManager implements X509TrustManager {
 
     private boolean isValidPin(X509Certificate certificate) throws CertificateException {
         try {
-            byte[] pin = MessageDigest.getInstance("SHA1").digest(certificate.getPublicKey().getEncoded());
+            byte[] pin = MessageDigest.getInstance("SHA-256").digest(certificate.getPublicKey().getEncoded());
             for (byte[] validPin : this.pins) {
                 if (Arrays.equals(validPin, pin)) {
                     return true;
